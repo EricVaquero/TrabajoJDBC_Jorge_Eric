@@ -1,13 +1,13 @@
 package dao.autor;
 
-import model.Libro;
+import model.Autor;
 
 import java.util.List;
 
 public interface AutorDAO {
-    void addLibro(Libro libro) throws Exception;
-    List<Libro> getAllLibros() throws Exception;
-    Libro getLibroById(int id) throws Exception;
-    void updateLibro(Libro libro) throws Exception;
-    void deleteLibro(int id) throws Exception;
+    void addAutor(Autor libro) throws Exception;
+    List<Autor> getAllAutores() throws Exception;
+    Autor getAutorById(int id) throws Exception;
+    void updateAutor(Autor autor) throws Exception;
+    void deleteAutor(int id) throws Exception;
 }
