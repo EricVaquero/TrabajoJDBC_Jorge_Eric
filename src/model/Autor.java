@@ -16,7 +16,6 @@ public class Autor {
     public void setId(int id) { this.id = id; }
     public void setNombre(String titulo) { this.nombre = nombre; }
 
-
     @Override
     public String toString() {
         return "ID=" + id + ", Nombre='" + nombre + "'";
