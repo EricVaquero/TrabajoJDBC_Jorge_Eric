@@ -108,4 +108,66 @@ public class BibliotecaService {
             System.err.println("Error al eliminar autor: " + e.getMessage());
         }
     }
+
+    public void asignarAutorALibro(int idLibro, int idAutor) {
+        try {
+            libroAutorDAO.addRelacion(idLibro, idAutor);
+            System.out.println("Service: autor asignado al libro");
+        } catch (Exception e) {
+            System.err.println("Error al asignar autor al libro: " + e.getMessage());
+        }
+    }
+
+    public void eliminarAutorDeLibro(int idLibro, int idAutor) {
+        try {
+            libroAutorDAO.deleteRelacion(idLibro, idAutor);
+            System.out.println("Service: autor quitado del libro");
+        } catch (Exception e) {
+            System.err.println("Error al quitar autor del libro: " + e.getMessage());
+        }
+    }
+
+    public List<Autor> listarAutoresDeLibro(int idLibro) {
+        try {
+            List<Integer> idsAutores = libroAutorDAO.getAutoresDeLibro(idLibro);
+            List<Autor> autores = new java.util.ArrayList<>();
+
+            for (int idAutor : idsAutores) {
+                Autor autor = autorDAO.getAutorById(idAutor);
+                if (autor != null) autores.add(autor);
+            }
+
+            System.out.println("Autores del libro " + idLibro + ":");
+            for (Autor a : autores) {
+                System.out.println(" - " + a);
+            }
+
+            return autores;
+        } catch (Exception e) {
+            System.err.println("Error al listar autores del libro: " + e.getMessage());
+            return List.of();
+        }
+    }
+
+    public List<Libro> listarLibrosDeAutor(int idAutor) {
+        try {
+            List<Integer> idsLibros = libroAutorDAO.getLibrosDeAutor(idAutor);
+            List<Libro> libros = new java.util.ArrayList<>();
+
+            for (int idLibro : idsLibros) {
+                Libro libro = libroDAO.getLibroById(idLibro);
+                if (libro != null) libros.add(libro);
+            }
+
+            System.out.println("Libros del autor " + idAutor + ":");
+            for (Libro l : libros) {
+                System.out.println(" - " + l);
+            }
+
+            return libros;
+        } catch (Exception e) {
+            System.err.println("Error al listar libros del autor: " + e.getMessage());
+            return List.of();
+        }
+    }
 }

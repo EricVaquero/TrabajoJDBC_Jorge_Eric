@@ -10,10 +10,11 @@ public class LibroDAOImpl implements LibroDAO {
 
     @Override
     public void addLibro(Libro libro) throws Exception {
-        String sql = "INSERT INTO libro (titulo) VALUES (?)";
+        String sql = "INSERT INTO libro (titulo, isbn) VALUES (?, ?)";
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, libro.getTitulo());
+            ps.setString(2, libro.getIsbn());
             ps.executeUpdate();
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -56,11 +57,12 @@ public class LibroDAOImpl implements LibroDAO {
 
     @Override
     public void updateLibro(Libro libro) throws Exception {
-        String sql = "UPDATE libro SET titulo=? WHERE id=?";
+        String sql = "UPDATE libro SET titulo=?, isbn=? WHERE id=?";
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, libro.getTitulo());
-            ps.setInt(2, libro.getId());
+            ps.setString(2, libro.getIsbn());
+            ps.setInt(3, libro.getId());
             ps.executeUpdate();
             System.out.println("DAO: Libro actualizado -> " + libro);
         }

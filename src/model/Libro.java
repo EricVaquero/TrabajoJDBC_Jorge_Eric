@@ -18,7 +18,7 @@ public class Libro {
 
     public void setId(int id) { this.id = id; }
     public void setTitulo(String titulo) { this.titulo = titulo; }
-    public void setIsbn(String titulo) { this.titulo = titulo; }
+    public void setIsbn(String isbn) { this.isbn = isbn; }
 
 
     @Override

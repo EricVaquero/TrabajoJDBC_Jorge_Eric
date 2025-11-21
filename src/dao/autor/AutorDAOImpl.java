@@ -24,7 +24,7 @@ public class AutorDAOImpl implements AutorDAO{
                 if (rs.next()) autor.setId(rs.getInt(1));
             }
 
-            System.out.println("DAO: Libro insertado -> " + autor);
+            System.out.println("DAO: Autor insertado -> " + autor);
         }
     }
 
